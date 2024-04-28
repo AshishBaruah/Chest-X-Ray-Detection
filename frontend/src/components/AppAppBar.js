@@ -12,9 +12,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
-
+import { useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 const logoStyle = {
-  width: '140px',
+  width: '20px',
+  color:'black',
   height: 'auto',
   cursor: 'pointer',
 };
@@ -39,6 +41,11 @@ function AppAppBar({ mode, toggleColorMode }) {
       setOpen(false);
     }
   };
+  const navigate = useNavigate();
+
+  const gotoHome = () => {
+    navigate('/');
+  }
 
   return (
     <div>
@@ -79,19 +86,19 @@ function AppAppBar({ mode, toggleColorMode }) {
                 flexGrow: 1,
                 display: 'flex',
                 alignItems: 'center',
-                ml: '-18px',
+                ml: '0px',
                 px: 0,
               }}
             >
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                onClick={() => scrollToSection('hero')}
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <MenuItem
+                  onClick={() => gotoHome()}
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                  <Typography variant="body2" color="text.primary">
+                    Go to Home
+                  </Typography>
+                </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection('image')}
                   sx={{ py: '6px', px: '12px' }}
@@ -124,8 +131,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 variant="text"
                 size="small"
                 component="a"
-                href="/material-ui/getting-started/templates/sign-in/"
-                target="_blank"
+                href="sign-in/"
               >
                 Sign in
               </Button>
@@ -134,8 +140,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 variant="contained"
                 size="small"
                 component="a"
-                href="/material-ui/getting-started/templates/sign-up/"
-                target="_blank"
+                href="/sign-up/"
               >
                 Sign up
               </Button>
